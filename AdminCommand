@@ -15,7 +15,7 @@ public class LoginCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		LoginSecurity plugin = LoginSecurity.instance;
 		if(!(sender instanceof Player)) {
-			sender.sendMessage("You must be a player");
+			sender.sendMessage("Voce deve ser um jogador");
 			return true;
 		}
 		
@@ -33,7 +33,7 @@ public class LoginCommand implements CommandExecutor {
 		}
 		if(args.length < 1) {
 			player.sendMessage(ChatColor.RED+"Argumentos insuficientes");
-			player.sendMessage("Usage: "+cmd.getUsage());
+			player.sendMessage("uso correto: "+cmd.getUsage());
 			return true;
 		}
 		if(PasswordManager.checkPass(uuid, args[0])) {
@@ -41,7 +41,7 @@ public class LoginCommand implements CommandExecutor {
 			plugin.thread.timeout.remove(name);
 			plugin.rehabPlayer(player, name);
 			player.sendMessage(ChatColor.GREEN+"Logado com sucesso!");
-			LoginSecurity.log.log(Level.INFO, "[LoginSecurity] {0} authenticated", player.getName());
+			LoginSecurity.log.log(Level.INFO, "[LoginSecurity] {0} autenticado", player.getName());
 		} else {
 			player.sendMessage(ChatColor.RED+"Senha Invalida");
 			LoginSecurity.log.log(Level.WARNING, "[LoginSecurity] {0} digitou uma senha incorreta", player.getName());
